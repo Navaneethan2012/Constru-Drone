@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/Constru-Drone/manifest.json">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1c2b33">
+  <title>ConstruDrone</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>ConstruDrone</h1>
+    <div class="chips">
+      <span class="chip" id="camChip" data-state="off"><i></i>Camera</span>
+      <span class="chip" id="bleChip" data-state="off"><i></i>Sensors</span>
+    </div>
+  </header>
+ 
+  <div id="alert" class="alert" role="alert" hidden></div>
+ 
+  <main>
+    <section class="panel">
+      <h2>Camera</h2>
+      <div class="screen">
+        <img id="stream" alt="Live camera feed">
+        <p id="camEmpty">Camera is not connected</p>
+      </div>
+      <div class="row">
+        <label for="camIp">Camera IP address</label>
+        <div class="inline">
+          <input id="camIp" type="text" inputmode="decimal" placeholder="192.168.4.1" autocomplete="off">
+          <button id="camBtn" class="primary" type="button">Connect camera</button>
+        </div>
+      </div>
+      <p class="hint" id="camMsg">First join the camera's WiFi in your device's WiFi settings, then enter its IP here.</p>
+    </section>
+ 
+    <section class="panel">
+      <h2>Sensors</h2>
+      <div class="row">
+        <button id="bleBtn" class="primary" type="button">Connect sensors</button>
+      </div>
+      <p class="hint" id="bleMsg">Turn on the sensor board, then tap Connect sensors and choose ConstruDrone.</p>
+ 
+      <div class="cards">
+        <article class="card" id="distCard" data-state="none">
+          <h3>Distance</h3>
+          <p class="value"><span id="distVal">--</span><small>cm</small></p>
+          <div class="bar"><div id="distBar"></div></div>
+          <p class="status" id="distStatus">No data</p>
+        </article>
+        <article class="card" id="gasCard" data-state="none">
+          <h3>Gas level</h3>
+          <p class="value"><span id="gasVal">--</span><small>raw</small></p>
+          <div class="bar"><div id="gasBar"></div></div>
+          <p class="status" id="gasStatus">No data</p>
+        </article>
+      </div>
+    </section>
+ 
+    <details class="panel settings">
+      <summary>Settings</summary>
+      <div class="grid">
+        <label>Camera stream port
+          <input id="camPort" type="number" min="1" max="65535" value="81">
+        </label>
+        <label>Distance warning (cm)
+          <input id="distWarn" type="number" min="1" value="50">
+        </label>
+        <label>Distance danger (cm)
+          <input id="distDanger" type="number" min="1" value="20">
+        </label>
+        <label>Gas warning (raw)
+          <input id="gasWarn" type="number" min="1" value="1200">
+        </label>
+        <label>Gas danger (raw)
+          <input id="gasDanger" type="number" min="1" value="2000">
+        </label>
+      </div>
+      <p class="hint">Distance alerts when closer than the limit. Gas alerts when higher than the limit. Changes save automatically.</p>
+    </details>
+  </main>
+ 
+  <script src="app.js"></script>
+</body>
+</html>
